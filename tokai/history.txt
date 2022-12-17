@@ -1,0 +1,12 @@
+2022.07.29
+unlock command, unlock delay time setting
+void setUnLockDealyTimeAtUnlock(uint16_t delayTime);
+
+2022.08.02
+delete auto Locking function 
+
+2022.12.15
+check 2022.09.27 오오다쿠 network channel and network address. no encryption
+maybe network channel, address = 11
+
+

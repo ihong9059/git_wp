@@ -1,0 +1,20 @@
+2022.08.03
+
+case of uttec message return 
+    * unicast_broadcast_data_received_cb
+    * isChangedSwitch()
+    * uttec_broadcast_data_received_cb()
+
+broadCast
+    uttec_broadcast_data_received_cb()
+        powerFlag = true
+
+    task_uttec()
+        setRackStatusByLock(lockFlag, allFlag)
+            send_uttec_response_msg()  ---> return uttec cmd ack 
+
+unicast 
+    unicast_broadcast_data_received_cb()
+        send_uttec_response_msg()
+
+

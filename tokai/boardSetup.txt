@@ -1,0 +1,83 @@
+led: p22, p23
+
+typedef struct __attribute__((packed))
+{
+    /** Running counter value. */
+    uint32_t counter_value;
+    /** Easy to spot data pattern. */
+    uint8_t data_pattern[PERIODIC_MSG_DATA_PATTERN_LEN];
+} payload_periodic_t;
+
+/** @brief Application message data structure. */
+typedef struct __attribute__((packed))
+{
+    uint8_t id;
+    union
+    {
+        payload_periodic_t               periodic;
+        payload_periodic_set_t           periodic_set_period;
+        payload_button_event_t           button_event;
+        payload_response_echo_t          resp_echo;
+        payload_led_state_set_t          led_state_set;
+        payload_led_state_get_t          led_state_get;
+        payload_response_led_state_get_t resp_led_state_get;
+    } payload;
+} msg_t;
+
+* uplink 기능(주기적 msg, led response, button response)
+static app_lib_data_send_res_e send_uplink_msg(message_id_e id,
+                                               uint8_t * payload)
+
+* 주기적으로 msg보내는 task
+static uint32_t task_send_periodic_msg(void)
+
+* button press msg send task 
+static uint32_t task_send_button_pressed_msg(void)
+
+* button pressed handler 
+static void button_pressed_handler(uint8_t button_id, button_event_e event)
+
+* echo response msg send 
+static void send_echo_response_msg(uint32_t delay)
+
+* 주기적 msg 주기 설정 
+static void set_periodic_msg_period(uint32_t new_period_ms)
+
+* led 상태 set 
+static void set_led_state(uint8_t led_id, uint8_t led_state)
+
+* led 상태 전송 
+static void send_led_state(uint8_t led_id)
+
+* 단방향 broadcast data 수신 callback 
+static app_lib_data_receive_res_e unicast_broadcast_data_received_cb(
+
+* 주기변경 callback(처리)
+static void appConfigPeriodReceivedCb(uint16_t type, 
+                                      uint8_t length,
+                                      uint8_t * value_p)
+
+
+--------------------------------------------------------------------------------
+* 주기 설정
+80 B8 0B 00 00 --> 3초
+80 d0 07 00 00 --> 2초 minimum
+
+* control led
+81 00 01 --> 0번째 led on
+81 01 01 --> 1번째 led on 
+
+81 00 00 --> 0번째 led off
+81 01 00 --> 1번째 led off
+
+* status led read 
+82 00   --? 0번째 led상태 요구 
+82 01
+
+* echo message 요구
+83
+
+
+
+
+

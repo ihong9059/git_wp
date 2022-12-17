@@ -1,0 +1,44 @@
+bike structure
+
+typedef struct{
+    bool stopFlag;
+    uint8_t status;
+    uint16_t bikeNo;
+    uint16_t onTime;
+} bike_t;
+
+* flash에 저장된 myId를 기준으로 bikeNo를 설정
+uttec_broadcast_data_received_cb()에서, bikeNo가 일치하면 처리
+
+* report주기는 30초로 진행
+
+* report는 동시에
+
+simulation 순서
+1. server
+    simulator 사용
+    rs422
+
+2. gateway
+    rs422
+    parsing
+    getFrame: rs422 frame -> mesh frame 
+
+    setFrame: mesh frame -> rs422 frame 
+    1board 2rack
+
+3. rack driver
+    2rack 1board 
+    
+leaf switch동작
+    * 전 상태와 비교
+    변경 발생시:
+        현재 rackMode확인후, 차기 상태 결정.
+        unlock상태에서 leaf switch on되면(low)--> wait lock command, when receive the lock command, locking
+        lock상태에서 wait unlock command, when receive the unlock command, unlocking.
+
+empty_unlock: led on 
+empty_lock: led on
+
+occupy_unlock: led blink
+occupy_lock: led off

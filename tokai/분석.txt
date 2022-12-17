@@ -1,0 +1,58 @@
+
+* unicast_broadcast_data_received_cb()
+지정 주소, broadcast 수신 callback
+Unicast & broadcast messages handling callback
+
+* send_uplink_msg()
+Function sending uplink data.
+    * Shared_Data_sendData()
+
+* task_send_periodic_msg()    
+Task to send periodic message.
+    * send_uplink_msg()
+
+* task_send_button_pressed_msg()
+Task handling "button pressed" message sending
+    * send_uplink_msg()
+
+* send_echo_response_msg()
+Echo command response sending function
+    * send_uplink_msg()
+
+* set_periodic_msg_period()
+Periodic message period setup function
+    * App_Scheduler_addTask_execTime()
+
+* set_led_state()
+LED state control function
+
+* send_led_state()
+LED get state send response function
+    * send_uplink_msg()
+
+* unicast_broadcast_data_received_cb()
+Data reception callback
+    * 
+
+* appConfigPeriodReceivedCb()
+Period change callback
+    * set_periodic_msg_period()
+
+
+from sink --> to node
+MSG_ID_ECHO_COMMAND_MSG : 131
+
+MSG_ID_PERIODIC_MSG_PERIOD_SET_MSG : 128
+
+from node --> to sink
+MSG_ID_PERIODIC_MSG : 0
+MSG_ID_ECHO_RESPONSE_MSG: 2
+
+
+
+
+
+
+
+
+
